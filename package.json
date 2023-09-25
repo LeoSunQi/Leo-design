@@ -1,0 +1,59 @@
+{
+  "name": "leo-design",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Leo Sun Qi",
+  "keywords": [
+    "react",
+    "library",
+    "components",
+    "tailwind css",
+    "Material Design 3"
+  ],
+  "description": "🐟 React Tailwind CSS Material Design 3 Component Library",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoSunQi/Leo-design.git",
+    "directory": "packages/components"
+  },
+  "main": "./lib/leo.umd.js",
+  "exports": {
+    ".": {
+      "import": "./lib/leo.es.js",
+      "require": "./lib/leo.umd.js"
+    },
+    "./style": "./lib/style.css"
+  },
+  "files": ["lib/"],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:lib": "vite build --mode lib",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.5",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}
