@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: error: git config user.name & please set dead value or install git
  * @Date: 2023-09-26 00:07:21
- * @LastEditTime: 2023-09-26 09:30:31
+ * @LastEditTime: 2023-09-26 12:57:54
  * Copyright (c) 2023 by error: git config user.name & please set dead value or install git, All Rights Reserved.
  */
 import path from 'path'
@@ -13,7 +13,7 @@ import { peerDependencies } from './package.json'
 const resolve = {
   // resolve alias
   alias: {
-    '@': path.resolve(__dirname, 'src'),
+    '@': path.resolve(__dirname, '.'),
     leo: path.resolve(__dirname, 'packages/components')
   }
 }
@@ -38,13 +38,13 @@ export default defineConfig(({ mode }) => {
               react: 'React',
               'react-dom': 'ReactDOM'
             }
-            }
           }
+        }
       }
     }
   }
   return {
     resolve,
-    plugins: [react()]
+    plugins: [react()],
   }
 })

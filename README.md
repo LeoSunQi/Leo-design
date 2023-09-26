@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/LeoSunQi/Leo-design.git">
-    <img alt="Leo Logo" width="100" src="https://github.dev/LeoSunQi/Leo-design/blob/master/public/leo.png">
+    <img alt="Leo Logo" width="100" src="https://gitee.com/leosunqi/Leo-design/raw/master/public/leo-logo.svg">
   </a>
 </p>
 

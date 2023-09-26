@@ -27,7 +27,7 @@
   },
   "include": [
     "src",
-    "packages/components",
+    "packages/components", "packages/__test__/Badges/badges.test.ts",
   ],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
