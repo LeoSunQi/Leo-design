@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* light srcollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgb(193, 193, 193);
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(241, 241, 241);
+}
+/* dark scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgb(104, 104, 104);
+}
+.dark ::-webkit-scrollbar-track {
+  background-color: rgb(66, 66, 66);
+}
+/* dark mode switch transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 999;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+.dark::view-transition-old(root) {
+  z-index: 1;
+}
+.dark::view-transition-new(root) {
+  z-index: 999;
+}
