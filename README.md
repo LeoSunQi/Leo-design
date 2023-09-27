@@ -1,6 +1,7 @@
 <p align="center">
   <a href="https://github.com/LeoSunQi/Leo-design.git">
-    <img src="./public/leo.png" alt="leo" />
+    <img width="30%" src="./public/leo.png" alt="leo" />
+    <h3 align="center">leo-qi-design</h3>
   </a>
 </p>
 
