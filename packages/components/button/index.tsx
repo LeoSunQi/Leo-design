@@ -2,11 +2,12 @@
  * @Description:
  * @Author: error: git config user.name & please set dead value or install git
  * @Date: 2023-09-26 00:51:50
- * @LastEditTime: 2023-09-27 15:55:22
+ * @LastEditTime: 2023-09-28 19:44:47
  * Copyright (c) 2023 by error: git config user.name & please set dead value or install git, All Rights Reserved.
  */
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { tv } from 'tailwind-variants'
+import { colors } from 'tailwindcss/colors';
 
 type MergedHTMLAttributes = Omit<
   React.HTMLAttributes<HTMLElement> &
@@ -16,7 +17,7 @@ type MergedHTMLAttributes = Omit<
 >
 
 type ButtonHTMLType = 'button' | 'submit' | 'reset'
-type ButtonType =
+type ButtonColor =
   | 'default'
   | 'primary'
   | 'success'
@@ -36,13 +37,13 @@ interface BasicButtonProps {
 }
 
 export interface ButtonProps extends BasicButtonProps, MergedHTMLAttributes {
-  herf?: string
+  href?: string
   htmlType?: ButtonHTMLType
   /**
    * @description 类型
    * @example | 'default'| 'primary' | 'success' | 'warning' | 'danger' | 'info'
    */
-  type?: ButtonType
+  color?: ButtonColor
   /**
    * @description 大小
    * @example 'large' | 'default' | 'small'
@@ -66,16 +67,24 @@ export interface ButtonProps extends BasicButtonProps, MergedHTMLAttributes {
   link?: boolean
 }
 
+const restColor = (color?: string, custom?: string) => {
+  return `bg-${color}-500 shadow-lg shadow-${color}-500/50 hover:bg-${color}-500/90 active:bg-${color}-700 ${custom}`
+}
+
+const restClassNmae = (color?: string, custom?: string) => {
+  return `text-${color}-500 shadow-lg shadow-${color}-200/50 border-${color}-300 hover:bg-${color}-100/90 ${custom}`
+}
+
 const BtnVariants = tv({
-  base: 'relative inline-flex items-center justify-center select-none min-h-10 text-sm px-6',
+  base: 'relative inline-flex items-center justify-center select-none min-h-10 text-sm text-white font-semibold px-6 active:animate-pulse',
   variants: {
-    type: {
-      default: 'border text-slate-500 border-slate-500 hover:bg-slate-100/90',
-      primary: 'bg-sky-500 hover:bg-sky-500/90 text-white',
-      success: 'bg-emerald-500 hover:bg-emerald-500/90 text-white',
-      warning: 'bg-orange-500 hover:bg-orange-500/90 text-white',
-      danger: 'bg-rose-500 hover:bg-rose-500/90 text-white',
-      info: 'bg-slate-500 hover:bg-slate-500/90 text-white'
+    color: {
+      default: 'text-slate-500 border border-slate-500 shadow-lg shadow-slate-200/50 hover:bg-slate-100/90 active:bg-slate-300/90',
+      primary: restColor('blue'),
+      success: restColor('emerald'),
+      warning: restColor('orange'),
+      danger: restColor('rose'),
+      info: restColor('slate')
     },
     size: {
       large: 'text-lg py-2 px-4',
@@ -87,16 +96,16 @@ const BtnVariants = tv({
       false: 'rounded-md'
     },
     plain: {
-      true: 'bg-transparent hover:bg-inverse-surface border'
+      true: 'bg-inherit hover:bg-inverse-surface border'
     },
     disabled: {
       true: 'opacity-[.3] cursor-not-allowed'
     },
     text: {
-      true: 'transition duration-150 ease-in-out bg-transparent border-0 text-current hover:bg-transparent hover:scale-110'
+      true: 'shadow-none transition duration-150 ease-in-out bg-inverse border-0 text-current hover:bg-inverse hover:scale-110 active:bg-inverse'
     },
     link: {
-      true: 'underline decoration-solid bg-transparent border-0 text-sky-500 hover:text-sky-500/90 hover:bg-transparent hover:scale-110'
+      true: 'shadow-none underline decoration-solid bg-inverse border-0 text-sky-500 hover:text-sky-500/90 hover:bg-inverse hover:scale-110 active:bg-inverse'
     }
   },
   compoundVariants: [
@@ -104,40 +113,40 @@ const BtnVariants = tv({
       plain: true,
       text: false,
       link: false,
-      type: 'primary',
-      className: 'text-sky-500 border-sky-300 hover:bg-sky-100/90'
+      color: 'primary',
+      className: restClassNmae('blue')
     },
     {
       plain: true,
       text: false,
       link: false,
-      type: 'success',
-      className: 'text-emerald-500 border-emerald-300 hover:bg-emerald-100/90'
+      color: 'success',
+      className: restClassNmae('emerald')
     },
     {
       plain: true,
       text: false,
       link: false,
-      type: 'warning',
-      className: 'text-orange-500 border-orange-300 hover:bg-orange-100/90'
+      color: 'warning',
+      className: restClassNmae('orange')
     },
     {
       plain: true,
       text: false,
       link: false,
-      type: 'danger',
-      className: 'text-rose-500 border-rose-300 hover:bg-rose-100/90'
+      color: 'danger',
+      className: restClassNmae('rose')
     },
     {
       plain: true,
       text: false,
       link: false,
-      type: 'info',
-      className: 'text-slate-500 border-slate-300 hover:bg-slate-100/90'
+      color: 'info',
+      className: restClassNmae('slate')
     }
   ],
   defaultVariants: {
-    type: 'default',
+    color: 'default',
     size: 'default',
     round: false,
     text: false,
@@ -145,12 +154,12 @@ const BtnVariants = tv({
   }
 })
 
-const Button = React.forwardRef<
+const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 >((props, ref) => {
   const {
-    type,
+    color,
     size,
     round,
     plain,
@@ -168,16 +177,18 @@ const Button = React.forwardRef<
     e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>
   ) => {
     const { onClick } = props
-    disabled && onClick && onClick(e)
+    if (onClick) {
+      onClick(e)
+    }
   }
 
-  const TabName = rest.herf ? 'a' : 'button'
+  const TabName = rest.href ? 'a' : 'button'
   return (
     <TabName
       {...rest}
       ref={ref as any}
       className={BtnVariants({
-        type,
+        color,
         size,
         round,
         disabled,
@@ -198,4 +209,4 @@ const Button = React.forwardRef<
 
 Button.displayName = 'Leo.Button'
 
-export default Button
+export { Button } 

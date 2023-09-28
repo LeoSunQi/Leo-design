@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@": ["src"],
+      "@": ["."],
+      "src": ["src"],
       "leo": ["packages/components"]
     },
     "target": "ES2020",
@@ -26,8 +27,11 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src",
-    "packages/components", "packages/__test__/Badges/badges.test.ts",
+    "src/",
+    "src/**/*/.ts",
+    "src/**/*/.tsx",
+    "packages/components", 
+    "packages/__test__/Badges/badges.test.ts",
   ],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
