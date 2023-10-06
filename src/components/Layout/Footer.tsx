@@ -2,7 +2,7 @@
  * @Description:
  * @Author: LeoSunQi
  * @Date: 2023-09-28 11:09:04
- * @LastEditTime: 2023-09-28 17:53:42
+ * @LastEditTime: 2023-10-05 17:08:10
  * Copyright (c) 2023 by LeoSunQi, All Rights Reserved.
  */
 import React, { forwardRef } from 'react'
@@ -27,7 +27,7 @@ const Footer = forwardRef<HTMLDivElement, MainProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      className="fixed w-full bottom-0 z-30 h-16 bg-surface/25 px-2 shadow backdrop-blur"
+      className="fixed w-full bottom-0 z-30 h-16 bg-surface/25 px-2 shadow backdrop-blur dark:text-white"
     >
       <div className="mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span className='mx-4'>{title}</span>

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: error: git config user.name & please set dead value or install git
  * @Date: 2023-09-26 10:10:10
- * @LastEditTime: 2023-09-28 23:57:38
+ * @LastEditTime: 2023-10-06 15:11:56
  * Copyright (c) 2023 by error: git config user.name & please set dead value or install git, All Rights Reserved.
  */
 import React, { forwardRef } from 'react'
@@ -11,12 +11,15 @@ import { JSX } from 'react/jsx-runtime'
 import { Button } from '../Button'
 
 const variants = tv({
-  base: 'relative inline-flex flex-col rounded-xl border',
+  base: 'relative inline-flex flex-col rounded-xl dark:text-white',
   variants: {
     shadow: {
-      hover: 'hover:shadow-lg',
-      always: 'shadow-xl',
+      hover: 'hover:shadow-xl dark:shadow-slate-950/50',
+      always: 'shadow-xl dark:shadow-slate-950/50',
       never: 'shadow-none'
+    },
+    border: {
+      true: 'border dark:border-slate-50/10'
     }
   },
   defaultVariants: {
@@ -29,6 +32,7 @@ interface BasicCardProps {
   active?: string
   customHeader?: () => JSX.Element
   shadow?: 'always' | 'never' | 'hover'
+  border?: boolean
   className?: string
   style?: React.CSSProperties
   children?: React.ReactNode
@@ -41,7 +45,7 @@ const CardHeader = (props: BasicCardProps) => {
   const { header, active, onButtonClick } = props
   return (
     <>
-      <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-1 px-3 py-4">
+      <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-1 px-3 py-4 dark:text-white">
         <span className="text-xl">{header}</span>
         <div className="text-end">
           <Button text size="small" onClick={onButtonClick?.bind(this)}>
@@ -49,7 +53,7 @@ const CardHeader = (props: BasicCardProps) => {
           </Button>
         </div>
       </div>
-      <div className="w-full border-slate-200 border-b"></div>
+      <div className="w-full border-b dark:border-slate-50/10"></div>
     </>
   )
 }
@@ -60,6 +64,7 @@ const Card = forwardRef<HTMLDivElement, BasicCardProps>((props, ref) => {
     customHeader,
     active,
     shadow,
+    border,
     children,
     className,
     style,
@@ -75,7 +80,7 @@ const Card = forwardRef<HTMLDivElement, BasicCardProps>((props, ref) => {
     <div
       {...rest}
       ref={ref}
-      className={variants({ shadow, className })}
+      className={variants({ shadow, className, border })}
       style={style}
     >
       {customHeader ? (
@@ -87,7 +92,7 @@ const Card = forwardRef<HTMLDivElement, BasicCardProps>((props, ref) => {
           onButtonClick={onButtonClick}
         />
       ) : null}
-      <div className="relative overflow-hidden rounded-t-xl my-5">
+      <div className="relative overflow-hidden rounded-t-xl">
         {children}
       </div>
     </div>

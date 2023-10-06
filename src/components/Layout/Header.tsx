@@ -2,11 +2,12 @@
  * @Description:
  * @Author: LeoSunQi
  * @Date: 2023-09-28 10:44:45
- * @LastEditTime: 2023-09-28 20:07:54
+ * @LastEditTime: 2023-10-05 19:27:43
  * Copyright (c) 2023 by LeoSunQi, All Rights Reserved.
  */
 
 import { motion } from 'framer-motion'
+import { SwitchTheme } from '.'
 import type { IRouterProps } from 'src/router'
 
 const Header = (props: IRouterProps) => {
@@ -43,7 +44,9 @@ const Header = (props: IRouterProps) => {
             />
           </div>
         </div>
-        <div className="flex-1 h-full"></div>
+        <div className="flex-1 flex h-full w-full justify-end text-2xl">
+          <SwitchTheme />
+        </div>
       </div>
     </div>
   )
